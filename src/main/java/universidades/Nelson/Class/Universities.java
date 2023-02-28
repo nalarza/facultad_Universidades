@@ -1,5 +1,6 @@
 package universidades.Nelson.Class;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,8 +8,8 @@ import jakarta.persistence.*;
 public class Universities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
-    private long id_university;
+    @Column(name ="id_university",unique = true, nullable = false)
+    private long id;
     private String name_university;
     private String email_university;
     private String address_university;
@@ -16,11 +17,18 @@ public class Universities {
     private String city_university;
     private String country_university;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_country")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Countries country;
+
+
+
     public Universities() {
     }
 
     public Universities(long id_university, String name_university, String email_university, String address_university, String phone_number_university, String city_university, String country_university) {
-        this.id_university = id_university;
+        this.id= id;
         this.name_university = name_university;
         this.email_university = email_university;
         this.address_university = address_university;
@@ -29,12 +37,12 @@ public class Universities {
         this.country_university = country_university;
     }
 
-    public long getId_university() {
-        return id_university;
+    public long getId() {
+        return id;
     }
 
-    public void setId_university(long id_university) {
-        this.id_university = id_university;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName_university() {
@@ -83,5 +91,12 @@ public class Universities {
 
     public void setCountry_university(String country_university) {
         this.country_university = country_university;
+    }
+    public Countries getCountry() {
+        return country;
+    }
+
+    public void setCountry(Countries country) {
+        this.country = country;
     }
 }
