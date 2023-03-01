@@ -16,15 +16,16 @@ public class Countries {
     private String name_country;
 
     @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
-    private Set<Universities> universities = new HashSet<>();
+    private Set<City> cities = new HashSet<>();
 
     public Countries() {
     }
 
-    public Countries(long id, String name_country, Set<Universities> universities) {
+
+    public Countries(long id, String name_country, Set<City> cities) {
         this.id = id;
         this.name_country = name_country;
-        this.universities = universities;
+        this.cities = cities;
     }
 
     public long getId() {
@@ -43,14 +44,4 @@ public class Countries {
         this.name_country = name_country;
     }
 
-    public Set<Universities> getUniversities() {
-        return universities;
-    }
-
-    public void setUniversities(Set<Universities> universities) {
-        this.universities = universities;
-        for (Universities university: universities){
-            university.setCountry(this);
-        }
-    }
 }
