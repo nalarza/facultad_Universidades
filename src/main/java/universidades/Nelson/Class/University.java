@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "university")
-public class Universities {
+public class University {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id_university",unique = true, nullable = false)
@@ -20,10 +20,10 @@ public class Universities {
 
 
 
-    public Universities() {
+    public University() {
     }
 
-    public Universities(long id_university, String name_university, String email_university, String address_university, String phone_number_university, String city_university, String country_university) {
+    public University(long id_university, String name_university, String email_university, String address_university, String phone_number_university, String city_university, String country_university) {
         this.id= id;
         this.name_university = name_university;
         this.email_university = email_university;

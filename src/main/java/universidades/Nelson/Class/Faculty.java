@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "faculty")
-public class Faculties {
+public class Faculty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +13,10 @@ public class Faculties {
     private String name_faculty;
     private String information_faculty;
 
-    public Faculties() {
+    public Faculty() {
     }
 
-    public Faculties(long id_faculty, String name_faculty, String information_faculty) {
+    public Faculty(long id_faculty, String name_faculty, String information_faculty) {
         this.id_faculty = id_faculty;
         this.name_faculty = name_faculty;
         this.information_faculty = information_faculty;

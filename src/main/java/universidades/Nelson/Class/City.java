@@ -15,13 +15,32 @@ public class City {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_country")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Countries country;
+    private Country country;
 
-    public Countries getCountry() {
+    public City() {
+    }
+
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(Countries country) {
+    public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre_del_pais() {
+        return nombre_del_pais;
+    }
+
+    public void setNombre_del_pais(String nombre_del_pais) {
+        this.nombre_del_pais = nombre_del_pais;
     }
 }
