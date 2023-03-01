@@ -1,6 +1,5 @@
 package universidades.Nelson.Class;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,10 +16,7 @@ public class Universities {
     private String city_university;
     private String country_university;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_country")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Countries country;
+
 
 
 
@@ -92,11 +88,5 @@ public class Universities {
     public void setCountry_university(String country_university) {
         this.country_university = country_university;
     }
-    public Countries getCountry() {
-        return country;
-    }
 
-    public void setCountry(Countries country) {
-        this.country = country;
-    }
 }
