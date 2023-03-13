@@ -1,5 +1,6 @@
 package universidades.Nelson.Class;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -7,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "country")
-public class Countries {
+public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,15 +19,16 @@ public class Countries {
     @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
     private Set<City> cities = new HashSet<>();
 
-    public Countries() {
-    }
+    @OneToOne(mappedBy = "country",cascade = CascadeType.ALL)
+    private Teacher teacher;
 
 
-    public Countries(long id, String name_country, Set<City> cities) {
-        this.id = id;
-        this.name_country = name_country;
-        this.cities = cities;
+
+
+
+    public Country() {
     }
+
 
     public long getId() {
         return id;
@@ -44,4 +46,16 @@ public class Countries {
         this.name_country = name_country;
     }
 
+    public Set<City> getCities() {
+        return cities;
+    }
+
+
+
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
+        for ( City city: cities){
+            city.setCountry(this);
+        }
+    }
 }
