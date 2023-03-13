@@ -1,5 +1,6 @@
 package universidades.Nelson.Class;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -19,17 +20,15 @@ public class Country {
     private Set<City> cities = new HashSet<>();
 
     @OneToOne(mappedBy = "country",cascade = CascadeType.ALL)
-    private Teacher teachers ;
+    private Teacher teacher;
+
+
+
+
 
     public Country() {
     }
 
-    public Country(long id, String name_country, Set<City> cities, Teacher teachers) {
-        this.id = id;
-        this.name_country = name_country;
-        this.cities = cities;
-        this.teachers = teachers;
-    }
 
     public long getId() {
         return id;

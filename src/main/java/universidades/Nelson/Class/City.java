@@ -17,6 +17,9 @@ public class City {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Country country;
 
+    @OneToOne(mappedBy = "city",cascade = CascadeType.ALL)
+    private University university;
+
     public City() {
     }
 

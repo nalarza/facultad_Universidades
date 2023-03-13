@@ -1,6 +1,10 @@
 package universidades.Nelson.Class;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "career")
@@ -13,13 +17,15 @@ public class Career {
     private String name_career;
     private String structure_career;
 
-    public Career() {
-    }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_faculty")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Faculty faculty;
 
-    public Career(long id_career, String name_career, String structure_career) {
-        this.id_career = id_career;
-        this.name_career = name_career;
-        this.structure_career = structure_career;
+    @OneToMany(mappedBy = "career",cascade = CascadeType.ALL)
+    private Set<Classroom> classrooms = new HashSet<>();
+
+    public Career() {
     }
 
     public long getId_career() {

@@ -1,6 +1,10 @@
 package universidades.Nelson.Class;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "university")
@@ -16,22 +20,19 @@ public class University {
     private String city_university;
     private String country_university;
 
+    @OneToOne(fetch =FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_city")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private City city;
 
+    @OneToMany(mappedBy = "university",cascade = CascadeType.ALL)
+    private Set<Faculty> faculties = new HashSet<>();
 
 
 
     public University() {
     }
 
-    public University(long id_university, String name_university, String email_university, String address_university, String phone_number_university, String city_university, String country_university) {
-        this.id= id;
-        this.name_university = name_university;
-        this.email_university = email_university;
-        this.address_university = address_university;
-        this.phone_number_university = phone_number_university;
-        this.city_university = city_university;
-        this.country_university = country_university;
-    }
 
     public long getId() {
         return id;
@@ -71,6 +72,25 @@ public class University {
 
     public void setPhone_number_university(String phone_number_university) {
         this.phone_number_university = phone_number_university;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public Set<Faculty> getFaculties() {
+        return faculties;
+    }
+
+    public void setFaculties(Set<Faculty> faculties) {
+        this.faculties = faculties;
+        for (Faculty faculty: faculties ){
+            faculty.setUniversity(this);
+        }
     }
 
     public String getCity_university() {
