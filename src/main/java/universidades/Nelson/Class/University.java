@@ -28,7 +28,13 @@ public class University {
     @OneToMany(mappedBy = "university",cascade = CascadeType.ALL)
     private Set<Faculty> faculties = new HashSet<>();
 
+    @OneToOne(mappedBy = "university", cascade = CascadeType.ALL)
+    private Student student;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_country")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Country country;
 
     public University() {
     }
@@ -84,6 +90,22 @@ public class University {
 
     public Set<Faculty> getFaculties() {
         return faculties;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public void setFaculties(Set<Faculty> faculties) {

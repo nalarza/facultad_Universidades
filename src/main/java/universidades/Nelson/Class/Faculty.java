@@ -25,6 +25,9 @@ public class Faculty {
     @OneToMany(mappedBy ="faculty",cascade = CascadeType.ALL)
     private Set<Career> careers = new HashSet<>();
 
+    @OneToMany(mappedBy = "faculty",cascade = CascadeType.ALL)
+    private Set<Student> students = new HashSet<>();
+
     public Faculty() {
     }
 
@@ -59,5 +62,27 @@ public class Faculty {
 
     public void setInformation_faculty(String information_faculty) {
         this.information_faculty = information_faculty;
+    }
+
+    public Set<Career> getCareers() {
+        return careers;
+    }
+
+    public void setCareers(Set<Career> careers) {
+        this.careers = careers;
+        for (Career career: careers){
+            career.setFaculty(this);
+        }
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+        for (Student student: students){
+            student.setFaculty(this);
+        }
     }
 }

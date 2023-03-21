@@ -3,6 +3,9 @@ package universidades.Nelson.Class;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "city")
 public class City {
@@ -19,6 +22,9 @@ public class City {
 
     @OneToOne(mappedBy = "city",cascade = CascadeType.ALL)
     private University university;
+
+    @OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
+    private Set<Student> students = new HashSet<>();
 
     public City() {
     }
@@ -45,5 +51,24 @@ public class City {
 
     public void setNombre_del_pais(String nombre_del_pais) {
         this.nombre_del_pais = nombre_del_pais;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+        for (Student student: students){
+            student.setCity(this);
+        }
     }
 }

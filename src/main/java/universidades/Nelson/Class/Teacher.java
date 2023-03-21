@@ -22,6 +22,8 @@ public class Teacher {
     private Country country;
 
 
+
+
     public Teacher() {
     }
 
@@ -57,8 +59,6 @@ public class Teacher {
     public void setPhone_number_teacher(String phone_number_teacher) {
         this.phone_number_teacher = phone_number_teacher;
     }
-
-
 
     public String getEmail_teacher() {
         return email_teacher;
