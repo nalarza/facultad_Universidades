@@ -25,19 +25,24 @@ public class Career {
     @OneToMany(mappedBy = "career",cascade = CascadeType.ALL)
     private Set<Classroom> classrooms = new HashSet<>();
 
+    @OneToMany(mappedBy = "career", cascade = CascadeType.ALL)
+    private Set<Matter> matters = new HashSet<>();
+
     @OneToOne(mappedBy = "career",cascade = CascadeType.ALL)
     private Student student;
+
 
     public Career() {
     }
 
-    public Career(long id_career, String name_career, String structure_career,
-                  Faculty faculty, Set<Classroom> classrooms, Student student) {
+    public Career(long id_career, String name_career, String structure_career, Faculty faculty, Set<Classroom> classrooms,
+                  Set<Matter> matters, Student student) {
         this.id_career = id_career;
         this.name_career = name_career;
         this.structure_career = structure_career;
         this.faculty = faculty;
         this.classrooms = classrooms;
+        this.matters = matters;
         this.student = student;
     }
 
@@ -75,6 +80,17 @@ public class Career {
 
     public Set<Classroom> getClassrooms() {
         return classrooms;
+    }
+
+    public Set<Matter> getMatters() {
+        return matters;
+    }
+
+    public void setMatters(Set<Matter> matters) {
+        this.matters = matters;
+        for (Matter matter:matters){
+            matter.setCareer(this);
+        }
     }
 
     public void setClassrooms(Set<Classroom> classrooms) {
