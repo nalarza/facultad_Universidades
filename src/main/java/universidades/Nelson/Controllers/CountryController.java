@@ -32,8 +32,8 @@ public class CountryController {
         return serviceCountry.updateCountry(country,id);
     }
     @GetMapping(path = "/name/country")
-    public ResponseEntity<Country> filter (@RequestParam (required = false,name = "nombre")String nombre){
-        return serviceCountry.filter(nombre);
+    public ResponseEntity<Country> filter (@RequestParam (required = false,name = "name")String name){
+        return serviceCountry.filter(name);
     }
     @GetMapping(path = "/{id}")
     public ResponseEntity<Country> countryId (@Valid @PathVariable Long id){
