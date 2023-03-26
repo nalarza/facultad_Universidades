@@ -19,8 +19,13 @@ public class ServiceCountry {
     CountryRepository repository;
 
     public ResponseEntity<Country> saveCountry(@Valid @RequestBody Country country){
-        repository.save(country);
-        return new ResponseEntity("saved successfully" , HttpStatus.OK);
+        try {
+            repository.save(country);
+            return new ResponseEntity("saved successfully" , HttpStatus.OK);
+        }catch (Exception exception){
+            return new ResponseEntity("something went wrong, try again", HttpStatus.NOT_ACCEPTABLE);
+        }
+
     }
 
     public List<Country> showCountries(){
@@ -46,8 +51,8 @@ public class ServiceCountry {
             return new ResponseEntity("country not found, try again", HttpStatus.BAD_REQUEST);
         }
     }
-    public ResponseEntity<Country> filter(@RequestParam(required = false, name = "nombre")String nombre){
-        List<Country> countryList = showCountries().stream().filter(x->x.getName_country().equalsIgnoreCase(nombre)).collect(Collectors.toList());
+    public ResponseEntity<Country> filter(@RequestParam(required = false, name = "name")String name){
+        List<Country> countryList = showCountries().stream().filter(x->x.getName_country().equalsIgnoreCase(name)).collect(Collectors.toList());
         if (countryList.isEmpty()){
             return new ResponseEntity("country not found, try again", HttpStatus.BAD_REQUEST);
         }else {
