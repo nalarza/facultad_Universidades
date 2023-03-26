@@ -18,7 +18,7 @@ public class ServiceUniversity {
     @Autowired
     UniversityRepository repository;
 
-    public ResponseEntity<University> saveCountry (@Valid @RequestBody University university){
+    public ResponseEntity<University> saveUniversity (@Valid @RequestBody University university){
         repository.save(university);
         return new ResponseEntity("save successfully ", HttpStatus.OK);
     }
@@ -27,7 +27,7 @@ public class ServiceUniversity {
         return repository.findAll();
     }
 
-    public ResponseEntity<University> deleteCountry (@PathVariable Long id){
+    public ResponseEntity<University> deleteUniversity (@PathVariable Long id){
         try {
             repository.deleteById(id);
             return new ResponseEntity("deleted seccessfully ",HttpStatus.OK);
