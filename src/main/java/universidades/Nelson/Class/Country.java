@@ -12,7 +12,7 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_country",unique = true, nullable = false)
-    private long id;
+    private long id_coutry;
     private String name_country;
 
     @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
@@ -31,9 +31,9 @@ public class Country {
     public Country() {
     }
 
-    public Country(long id, String name_country, Set<City> cities,
+    public Country(long id_coutry, String name_country, Set<City> cities,
                    Teacher teacher, Set<Student> students, Set<University> universities) {
-        this.id = id;
+        this.id_coutry = id_coutry;
         this.name_country = name_country;
         this.cities = cities;
         this.teacher = teacher;
@@ -41,12 +41,12 @@ public class Country {
         this.universities = universities;
     }
 
-    public long getId() {
-        return id;
+    public long getId_coutry() {
+        return id_coutry;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId_coutry(long id_coutry) {
+        this.id_coutry = id_coutry;
     }
 
     public String getName_country() {

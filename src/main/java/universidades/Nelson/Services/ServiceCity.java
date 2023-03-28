@@ -1,4 +1,4 @@
-package main.java.universidades.Nelson.Services;
+package universidades.Nelson.Services;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,19 +7,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import universidades.Nelson.CLass.Services;
-import universidades.Nelson.Class.CityRepository;
+import universidades.Nelson.Class.City;
+import universidades.Nelson.Repository.CityRepository;
 
-import java.security.DrbgParameters.Capability;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.smartcardio.ResponseAPDU;
-
 public class ServiceCity {
     @Autowired
-    CityRepository repository; 
+    CityRepository repository;
     
     public ResponseEntity<City> saveCity (@Valid @RequestBody City city){
         repository.save(city);
@@ -41,7 +39,7 @@ public class ServiceCity {
 
     public ResponseEntity<City> updateCity (@Valid @RequestBody City city, @PathVariable Long id){
         Optional<City> cityopOptional = repository.findById(id);
-        if (cityopOptional.isPresent) {
+        if (cityopOptional.isPresent()) {
             city.setId(cityopOptional.get().getId());
             repository.save(city);
             return new ResponseEntity("city updates seccessfully ",HttpStatus.OK);
@@ -61,7 +59,7 @@ public class ServiceCity {
 
     public ResponseEntity<City> cityById (@Valid @PathVariable Long id){
         Optional<City> cityOptional = repository.findById(id);
-        if (cityOptional.isPresent) {
+        if (cityOptional.isPresent()) {
             return new ResponseEntity(cityOptional,HttpStatus.OK);
         } else {
             return new ResponseEntity("city not found, try again ",HttpStatus.BAD_REQUEST);
