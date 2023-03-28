@@ -19,7 +19,7 @@ public class CountryController {
     public List<Country> countryList(){
         return serviceCountry.showCountries();
     }
-    @PostMapping(path = "add/countries")
+    @PostMapping(path = "/add/countries")
     public ResponseEntity<Country> addCountry (@Valid @RequestBody Country country) {
         return serviceCountry.saveCountry(country);
     }

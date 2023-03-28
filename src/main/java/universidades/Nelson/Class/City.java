@@ -13,7 +13,7 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_city",unique = true,nullable = false)
     private Long id ;
-    private String nombre_del_pais;
+    private String name_city;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_country")
@@ -45,12 +45,12 @@ public class City {
         this.id = id;
     }
 
-    public String getNombre_del_pais() {
-        return nombre_del_pais;
+    public String getName_city() {
+        return name_city;
     }
 
-    public void setNombre_del_pais(String nombre_del_pais) {
-        this.nombre_del_pais = nombre_del_pais;
+    public void setName_city(String name_city) {
+        this.name_city = name_city;
     }
 
     public University getUniversity() {

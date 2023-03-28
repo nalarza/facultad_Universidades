@@ -44,7 +44,7 @@ public class ServiceCountry {
     public ResponseEntity<Country> updateCountry(@Valid @RequestBody Country country, @PathVariable Long id){
         Optional<Country> countryOptional = repository.findById(id);
         if(countryOptional.isPresent()){
-            country.setId(countryOptional.get().getId());
+            country.setId_coutry(countryOptional.get().getId_coutry());
             repository.save(country);
             return new ResponseEntity("country updated successfully ", HttpStatus.OK);
         }else {
