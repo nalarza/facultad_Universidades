@@ -32,7 +32,7 @@ public class ServiceCountry {
         return repository.findAll();
     }
 
-    public ResponseEntity<Country> DeleteCountry (@PathVariable Long id){
+    public ResponseEntity<Country> deleteCountry(@PathVariable Long id){
         try {
             repository.deleteById(id);
             return new ResponseEntity("delete successfully",HttpStatus.OK);

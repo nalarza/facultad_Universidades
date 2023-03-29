@@ -25,7 +25,7 @@ public class CountryController {
     }
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Country> deleteCountry(@PathVariable Long id){
-        return serviceCountry.DeleteCountry(id);
+        return serviceCountry.deleteCountry(id);
     }
     @PutMapping(path = "/{id}")
     public ResponseEntity<Country> updateCountry (@Valid @RequestBody Country country, @PathVariable Long id){
