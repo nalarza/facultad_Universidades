@@ -11,7 +11,7 @@ import universidades.Nelson.Services.ServiceMatter;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "university/mateer")
+@RequestMapping(path = "/university/mateer")
 public class MateerController {
     @Autowired
     ServiceMatter serviceMatter;

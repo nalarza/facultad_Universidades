@@ -10,7 +10,7 @@ import universidades.Nelson.Services.ServiceCareer;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "university/career")
+@RequestMapping(path = "/university/career")
 public class CareerController {
     @Autowired
     ServiceCareer serviceCareer;

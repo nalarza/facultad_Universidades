@@ -10,7 +10,7 @@ import universidades.Nelson.Services.ServiceTeacher;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "university/teacher")
+@RequestMapping(path = "/university/teacher")
 public class TeacherController {
     @Autowired
     ServiceTeacher serviceTeacher;

@@ -10,7 +10,7 @@ import universidades.Nelson.Services.ServiceCountry;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "university/country")
+@RequestMapping(path = "/university/country")
 public class CountryController {
     @Autowired
     private ServiceCountry serviceCountry;

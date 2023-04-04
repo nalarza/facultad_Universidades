@@ -10,7 +10,7 @@ import universidades.Nelson.Services.ServiceCity;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "university/city")
+@RequestMapping(path = "/university/city")
 public class CityController {
     @Autowired
     private ServiceCity serviceCity;

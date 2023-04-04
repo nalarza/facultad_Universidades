@@ -17,8 +17,7 @@ public class University {
     private String email_university;
     private String address_university;
     private String phone_number_university;
-    private String city_university;
-    private String country_university;
+
 
     @OneToOne(fetch =FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_city")
@@ -113,22 +112,6 @@ public class University {
         for (Faculty faculty: faculties ){
             faculty.setUniversity(this);
         }
-    }
-
-    public String getCity_university() {
-        return city_university;
-    }
-
-    public void setCity_university(String city_university) {
-        this.city_university = city_university;
-    }
-
-    public String getCountry_university() {
-        return country_university;
-    }
-
-    public void setCountry_university(String country_university) {
-        this.country_university = country_university;
     }
 
 }
