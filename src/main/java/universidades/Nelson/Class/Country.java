@@ -1,5 +1,6 @@
 package universidades.Nelson.Class;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -18,8 +19,8 @@ public class Country {
     @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
     private Set<City> cities = new HashSet<>();
 
-    @OneToOne(mappedBy = "country",cascade = CascadeType.ALL)
-    private Teacher teacher;
+   @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
+   private Set<Teacher> teachers = new HashSet<>();
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private Set<Student> students = new HashSet<>();
@@ -31,12 +32,12 @@ public class Country {
     public Country() {
     }
 
-    public Country(long id_coutry, String name_country, Set<City> cities,
-                   Teacher teacher, Set<Student> students, Set<University> universities) {
+    public Country(long id_coutry, String name_country, Set<City> cities, Set<Teacher> teachers,
+                   Set<Student> students, Set<University> universities) {
         this.id_coutry = id_coutry;
         this.name_country = name_country;
         this.cities = cities;
-        this.teacher = teacher;
+        this.teachers = teachers;
         this.students = students;
         this.universities = universities;
     }
@@ -61,20 +62,23 @@ public class Country {
         return cities;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-
     public Set<Student> getStudents() {
         return students;
     }
 
     public Set<University> getUniversities() {
         return universities;
+    }
+
+    public Set<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
+        for (Teacher teacher:teachers){
+            teacher.setCountry(this);
+        }
     }
 
     public void setUniversities(Set<University> universities) {

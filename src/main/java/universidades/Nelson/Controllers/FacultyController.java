@@ -11,7 +11,7 @@ import universidades.Nelson.Services.ServiceFaculty;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "university/faculty")
+@RequestMapping(path = "/university/faculty")
 public class FacultyController {
     @Autowired
     ServiceFaculty serviceFaculty;

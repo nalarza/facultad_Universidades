@@ -3,6 +3,9 @@ package universidades.Nelson.Class;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "teacher")
 public class Teacher {
@@ -16,7 +19,7 @@ public class Teacher {
     private String phone_number_teacher;
     private String email_teacher;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "id_country")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Country country;
@@ -66,5 +69,13 @@ public class Teacher {
 
     public void setEmail_teacher(String email_teacher) {
         this.email_teacher = email_teacher;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }
